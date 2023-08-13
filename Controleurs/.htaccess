@@ -1,0 +1,4 @@
+AuthName "Page d'administration protégée"
+AuthType Basic
+AuthUserFile "/home/portfolibk/www/include/.htpasswd"
+Require valid-user

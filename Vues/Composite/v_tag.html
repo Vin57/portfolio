@@ -1,0 +1,22 @@
+<!--/*
+ * portfolio - portfolio
+ * © vincp, 2017
+ * v_tag | v_tag.html -
+ *
+ * 	@author :
+ * 	@date : 18 avr. 2017
+ *      @modify : 'in case of modification edit this and add an other modify section like this'
+ */-->
+
+<div class="col-lg-12">
+    <label for="txt_tags">Tags</label><br>
+    <input class="form-control" id="txt_tags" placeholder="Rechercher un tag ou créez en un nouveau" type="text" 
+           onKeyUp="var tableau = {'objet': this.value};
+               sendToAjax('tag', 'chercherTag', null, tableau, '#researchTag', false, 'Recherche de tags')">
+    <div id="researchTag"></div>
+    <hr>
+    <div id="returnTag">
+        <br>
+        <?php if(isset($selectTags)){echo($selectTags);} ?>
+    </div>
+</div>

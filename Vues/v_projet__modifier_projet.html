@@ -1,0 +1,57 @@
+<!--/*
+ * portfolio - portfolio
+ * © vincp, 2017
+ * v_projet__modifier_projet | v_projet__modifier_projet.html - Formulaire de modification d'un projet
+ *
+ * 	@author : vincp
+ * 	@date : 20 avr. 2017
+ *      @modify : 'in case of modification edit this and add an other modify section like this'
+ */-->
+
+<div class="panel panel-blugre">
+    <div class="panel-heading">
+        <div class="panel-title">Modifier un Projet</div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <!--Date de l'article-->
+                <div class="col-lg-6 col-md-6 col-sm-7 col-xs-7">
+                    <label for="date_creation">Date </label>
+                    <input class="form-control" type="date" id="date_creation" name="date_projet" value="<?php echo($selectDate)?>">
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-7 col-xs-7">
+                    <label for="nom">Nom projet</label>
+                    <input class="form-control" placeholder="Obligatoire" type="text" id="nom" size="100"  maxlength="255" name="txt_nom" value="<?php echo($selectNom)?>">
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+                    <!--Le niveaux d'type-->
+                    <label for="bt_type">Type du projet</label><br>
+                    <button class="btn btn-smoke-red form-control" type="button" onclick="attribValue(<?php echo(TYPE_PROJET_SITE) ?>, 'bt_type');setEvidence(this, 'groupeButtonInteret')">Site</button><br></br>
+                    <button class="btn btn-smoke-red form-control" type="button" onclick="attribValue(<?php echo(TYPE_PROJET_LOGICIEL)?>, 'bt_type');setEvidence(this, 'groupeButtonInteret')">Logiciel</button><br></br>
+                    <button class="btn btn-smoke-red form-control" type="button" onclick="attribValue(<?php echo(TYPE_PROJET_MODELISATION)?>, 'bt_type');setEvidence(this, 'groupeButtonInteret')">Modélisation</button>
+                    <input class="form-control" type="hidden" id="bt_type" name="type" value="<?php echo($selectType)?>">
+                </div>
+                <?php include('../Vues/Composite/v_tag.html') ?>
+            </div>
+            <?php include('../Vues/Composite/v_description.html') ?>
+            <?php include('../Vues/Composite/v_competence.html') ?>
+            <input class="form-control" type="hidden" name="id_projet" value="<?php echo($projetId) ?>">
+            <div class="uk-alert-large">
+                <input type="button" class="btn btn-smoke-red md-btn-block md-btn-large" onclick="
+                                            var input = extractValueOf(document.getElementsByClassName('form-control'));
+                                    var description = document.getElementById('content_ck_editor').innerHTML;
+                                    var arrayTag = getValueOfElement(document.getElementById('returnTag'), 'id');
+                                    var arrayCompetence = getValueOfElement(document.getElementById('lesCompetences'), 'id');
+                                    var table = {'id_projet': input['id_projet'], 'txt_nom_projet': input['txt_nom'], 'date_projet': input['date_projet'], 'description': description, 'type_projet': input['type'], 'tags': arrayTag, 'competences' : arrayCompetence};
+                sendToAjax('projet', 'modifierProjet', 'insererProjet', table, '#returnAjax', true, 'Modification du projet en cours');"
+                       name="cmd_form_add" value="Modifier">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,33 @@
+<!--/*
+ * portfolio - portfolio
+ * © vincp, 2017
+ * v_profil_membre | HTML - Affiche le profil d'un membre
+ *
+ * 	@author : vincp
+ * 	@date : 22 avr. 2017
+ *      @modify : 'in case of modification edit this and add an other modify section like this'
+ */-->
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+        <?php
+        ($membre == $_SESSION['connected_user'])?(include('../Vues/Composite/v_gestion_compte.html')):('');
+        $stringArticleFavoris = ($nbrArticlesTrouve>1)?"Articles favoris :":"Article favori :";
+        if(isset($articleFavoris) && !empty($articleFavoris)){
+        ?>
+            <legend>
+                <fieldset><?=($stringArticleFavoris)?></fieldset>
+            </legend>
+        <?php
+            echo($articleFavoris);
+        }?>
+    </div>
+    
+    <div class="col-lg-9 sol-md-9 col-sm-8 col-xs-12">
+        <div class="panel panel-default">
+            <span class="pull-right"><i class="fa fa-5x fa-id-card" aria-hidden="true"></i></span>
+            <h1><?php echo($pseudo) ?></h1>
+            Grade : <?php echo(\Application\Workbench::getIcoGrade($grade))?>
+        </div>
+    </div>
+    
+</div>

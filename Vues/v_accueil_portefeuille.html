@@ -1,0 +1,76 @@
+<!--
+/* portfolio - portfolio
+ * © Vincent, 2016
+ * v__accueil_portefeuille | HTML - Page affichant l'accueil du portefeuille
+ * 	@author : PV
+ * 	@date : 22 déc. 2016
+ *      @modify : 'in case of modification edit this and add an other modify section like this'
+ */
+-->
+<div class="row">
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="text-nowrap">Mes projets</h1>
+            <p>Liste non-exhaustive des projets que j'ai effectués au fil de mes diverses expériences</p>
+        </div>
+    </div>
+</div>
+<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+    <div class="panel-group">
+        <div class="panel">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-heading panel-blugre">
+                    <i class="fa fa-code"></i> Projet
+                </li>
+                <span class="input-group">
+                    <input type="search" class="input-sm form-control" placeholder="Rechercher" id="searchProject">
+                    <span class="input-group-btn">
+                        <button onclick="
+                                var table = {'search': document.getElementById('searchProject').value};
+                                sendToAjax('projet',null, null, table, '#returnProjet', true, 'Recherche en cours')
+                                " class="btn btn-blugre btn-sm"><i class="glyphicon glyphicon-search"></i> Chercher</button>
+                    </span>
+                </span>
+                <li class="list-group-item">
+                    <a class="link-blugre">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-square fa-stack-2x"></i>
+                            <i class="fa fa-terminal fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="lead">Site</span>
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a class="link-blugre">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-square fa-stack-2x"></i>
+                            <i class="fa fa-terminal fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="lead">Logiciel</span>
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a class="link-blugre">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-square fa-stack-2x"></i>
+                            <i class="fa fa-sitemap fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="lead">Modélisation</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<?php
+if(isset($_SESSION['connected_user']) && Application\Workbench::isAllowed($_SESSION['connected_user'],USER_STATUS_WRITER)){
+?>
+<h4>
+    <a onclick="sendToAjax('projet', 'ajouterProjet', null, null, '#returnProjet', true, 'Création du formulaire')" class="link-blugre">
+        <i class="fa fa-plus-circle"></i> Ajouter un projet
+    </a>
+</h4>
+<hr>
+<?php
+}
+include('v_projet__lister_projets.html');?>

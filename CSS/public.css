@@ -1,0 +1,342 @@
+/* portfolio - portfolio
+ * © Vincent, 2016
+ * pubic | CSS - Role fichier
+ *
+ * 	@author : PV
+ * 	@date : 20 déc. 2016
+ *      @modify : 'in case of modification edit this and add an other modify section like this'
+*/
+
+/*
+    GENERIC
+*/
+
+body{
+    background-color: #79a8a9;
+}
+
+.fixed{
+    position: fixed;
+    z-index: 999998;
+}
+
+.breakword{
+    word-wrap: break-word;
+}
+
+.active{
+    background-color: #1f4e5f; 
+}
+
+/*
+    JUMBOTRON
+*/
+.jumbotron-blugre {
+    padding: 30px;
+    margin-bottom: 30px;
+    font-size: 21px;
+    font-weight: 200;
+    line-height: 2.1428571435;
+    color: inherit;
+    background-color: #1f4e5f;
+}
+
+/*
+    PANEL
+*/
+
+/*Global panel*/
+
+.panel-black .panel-heading,
+.panel-beige .panel-heading,
+.panel-blugre .panel-heading,
+.panel-fill-black .panel-heading{
+    font-weight: bold;
+}
+
+/*Specific panel*/
+
+.panel-beige{
+    background-color: #99796c;
+    color : white;
+}
+.panel-beige .panel-body{
+    background-color: whitesmoke;
+    color:black;
+}
+
+.panel-blugre{
+    background-color: #1f4e5f;
+    color : white;
+}
+.panel-blugre .panel-body{
+    background-color: whitesmoke;
+    color:black;
+}
+
+.panel-black{
+    background-color: #99796c;
+    color : white;
+}
+.panel-black .panel-body{
+    background-color: whitesmoke;
+    color:white;
+}
+
+.panel-fill-black{
+    background-color: black;
+    color : white;
+}
+.panel-fill-black .panel-body{
+    background-color: black;
+    color:white;
+}
+
+/*
+    PROGRESS-BAR
+*/
+
+.progress-bar-pourcent{
+    float:right;
+}
+
+.progress-bar-smoke-red {
+    background-color: #61000f;
+}
+
+.progress-striped .progress-bar-smoke-red {
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+    background-image:      -o-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+    background-image:         linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+}
+
+.progress-bar-blugre {
+    background-color: #79a8a9;
+}
+
+/*
+    NAVBAR
+*/
+
+/*navbar-beige*/
+.navbar-beige{background-color: #99796c;color:white;border-bottom: 1px solid black;}
+
+.navbar-beige a{color:whitesmoke;}
+
+.navbar-beige .navbar-toggle .icon-bar{
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+    background-color: #000;
+}
+
+.navbar-beige .navbar-toggle{
+    position: relative;
+    float: right;
+    padding: 9px 10px;
+    margin-top: 8px;
+    margin-right: 15px;
+    margin-bottom: 8px;
+    background-color: whitesmoke;
+    background-image: none;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 4px;
+}
+
+
+.navbar-beige a:hover{
+    cursor: hand;
+    color:black;
+}
+
+/*navbar-blugre*/
+.navbar-blugre{background-color: #1f4e5f;color: #f4f7f7;border-bottom: 1px solid black;}.navbar-blugre a{color: #f4f7f7;}
+.navbar-blugre .navbar-toggle .icon-bar{
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+    background-color: #000;
+}
+
+.navbar-blugre .navbar-toggle{
+    position: relative;
+    float: right;
+    padding: 9px 10px;
+    margin-top: 8px;
+    margin-right: 15px;
+    margin-bottom: 8px;
+    background-color: whitesmoke;
+    background-image: none;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 4px;
+}
+
+
+.navbar-blugre a:hover{
+    cursor: hand;
+    color:black;
+}
+
+/*
+    BADGE
+*/
+.badge-beige {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #99796c;
+}
+
+.badge-blugre {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #1f4e5f;
+}
+
+.badge-green{
+    background-color: #0097a7;
+}
+
+.badge-square{
+    border-radius: 0;
+}
+
+.badge-blugre{
+    background-color: #1f4e5f;
+}
+
+/*
+    NOTIF
+*/
+
+.notif-left{
+    float: left;
+    position:absolute;
+}
+
+.notif-right{
+    float: right;
+    width: 20%;
+}
+
+/*
+    LINK
+*/
+
+.blue-rectangle{
+    border-radius:1%;
+    background-color:#ebf7fd;
+    color:#2d7091;
+    border:1px solid rgba(45,112,145,.3);
+}
+
+.link-white{
+    color:white;
+}
+
+.link-white:hover{
+    color:#ebf7fd;
+}
+
+.link-blugre{
+    color:#1f4e5f;
+}
+
+.link-blugre:hover{
+    color:#1e88e5;
+}
+
+.link-red{
+    color:red;
+}
+
+.link-red:hover{
+    color:black;
+}
+
+.link-orange{
+    color:#F6B352;
+}
+
+.link-orange:hover{
+    color:#DE6449;
+}
+
+.link-yellow{
+    color: lightyellow;
+}
+
+/*
+    ICON
+*/
+
+.ico-plus-grey{
+    color:grey;
+}
+
+/*
+    ALERT
+*/
+
+.alert-grey{
+    background-color : #777;
+    text-shadow : none;
+}
+
+/*
+    BUTTON
+*/
+.btn-smoke-red{
+    background-color: #61000f;
+    color: whitesmoke;
+}
+
+.btn-smoke-red:hover{
+    color:whitesmoke;
+}
+
+.btn-grey{
+    background-color: #6d7899;
+}
+
+
+.btn-beige{
+    background-color: #99796c;
+    color: whitesmoke;
+    border: 1px solid rgba(0, 0, 0, 0); 
+}
+
+.btn-blugre{
+    background-color: #1f4e5f;
+    color: whitesmoke;
+    border: 1px solid rgba(0, 0, 0, 0); 
+}
+
+.btn-blugre:hover{
+    color: #30A9DE;
+}
+
+/*
+    LABEL
+*/
+
+.label-grey{
+    background-color: #008c9e;
+}

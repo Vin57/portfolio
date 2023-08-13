@@ -1,0 +1,87 @@
+<!--/*
+ * portfolio - portfolio
+ * © vincp, 2017
+ * v_profil_edition | v_profil_edition.html - Formulaire d'édition du profil de l'utilisateur
+ *
+ * 	@author : vincp
+ * 	@date : 29 déc. 2017
+ *      @modify : 'in case of modification edit this and add an other modify section like this'
+ */-->
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-blugre">
+            <div class="panel-heading">
+                <h3 class="panel-title">Édition du profil</h3>
+            </div>
+            <div class="panel-body">
+                <fieldset>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">Modifier pseudo</span>
+                            <input id="pseudo" class="form-control" placeholder="Pseudo" name="pseudo" type="text" maxlength="30" value="<?=$updatePseudo?>" onchange="
+                                    if (ckValue('pseudo', new RegExp(REGEX_PSEUDO, 'gi')) == false) {
+                                        messageDisplay('pseudo', 'error_pseudo', 'Le pseudo doit faire entre 5 et 30 caractères, ne contenir que des lettres, des chiffres et  _', ERROR);
+                                    } else {
+                                        messageReinit('pseudo', 'error_pseudo');
+                                        validSection('pseudo');
+                                    }">
+                            <span id="error_pseudo"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="button" onclick="
+                                var input = extractValueOf(document.getElementsByClassName('form-control'));
+                                var table = {'pseudo': input['pseudo']};
+                                sendToAjax('membre', 'modifierProfil', 'modifierPseudo', table, '#returnAjax', true, 'Modification en cours...', 1);
+                               " value="Confirmer le changement de pseudo">
+                    </div>
+                    <hr class="btn-blugre">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">Ancien mot de passe</span>
+                            <input class="form-control" placeholder="Mot de passe actuel" name="formerMdp" type="password" maxlength="20" value="<?=$passWordPrecedent?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">Nouveau mot de passe</span>
+                            <input id="new_mdp" class="form-control" placeholder="Nouveau mot de passe" name="new_mdp" type="password" maxlength="20" value="<?=$nouveauPassword?>"
+                                   onkeyup="
+                                           if (ckValue('new_mdp', new RegExp(REGEX_PASSWORD, 'gi')) == false) {
+                                               messageDisplay('new_mdp', 'error_newpwd', 'Le mot de passe doit faire entre 5 et 20 caractères (les symboles +-*/ sont acceptés)', ERROR);
+                                           } else {
+                                               messageReinit('new_mdp', 'error_newpwd');
+                                               validSection('new_mdp');
+                                           }">
+                            <span id="error_newpwd"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">Confirmer mot de passe</span>
+                            <input id="confirmMdp" class="form-control" placeholder="Confirmer mot de passe" name="confirmMdp" type="password" maxlength="20" value="<?=$confirmPassword?>" 
+                                   onchange="
+                                           if (ckValue('confirmMdp', document.getElementById('new_mdp').value, 'gi') == false) {
+                                               messageDisplay('confirmMdp', 'error_confirm_pwd', 'Les mots de passe ne correspondent pas', WARNING);
+                                           } else {
+                                               messageReinit('confirmMdp', 'error_confirm_pwd');
+                                               validSection('confirmMdp');
+                                           }">
+                            <span id="error_confirm_pwd"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="button" onclick="
+                                var input = extractValueOf(document.getElementsByClassName('form-control'));
+                                var table = {'formerMdp': input['formerMdp'],
+                                    'new_mdp': input['new_mdp'],
+                                    'confirmMdp': input['confirmMdp']};
+                                console.log(table);
+                                sendToAjax('membre', 'modifierProfil', 'modifierPass', table, '#returnAjax', true, 'Modification en cours');"
+                               value="Confirmer le changement de mot de passe">
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>

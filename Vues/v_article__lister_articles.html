@@ -1,0 +1,126 @@
+<!--
+
+ * portfolio - portfolio
+ * © Vincent, 2017
+ * v_voirLesArticles | HTML - Affichage des articles de article du site
+ *
+ * 	@author : vincp
+ * 	@date : 1 janv. 2017
+ *      @modify : 'in case of modification edit this and add an other modify section like this'
+-->
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <?php
+        if(!isset($consult) || empty($consult)){
+            if(empty($mode)){
+            ?>
+            <!--<button onclick="var input = extractValueOf(document.getElementsByClassName('trackValue'));
+                    var table = {'mode': 1, 'mois': input['moisSelect'], 'annee': input['anneeSelect']};
+                    sendToAjax('article', null, null, table, '#returnAjax', true, 'Recherche en cours')"
+                    class="btn btn-blugre btn-lg btn-block trackValue" name="modeSelect" value="0">
+                <i class="fa fa-list" aria-hidden="true"></i> Affichage liste
+            </button>!-->
+            <?php
+            }
+            else{
+            ?>
+            <button onclick="var input = extractValueOf(document.getElementsByClassName('trackValue'));
+                    var table = {'mode': 0, 'mois': input['moisSelect'], 'annee': input['anneeSelect']};
+                    sendToAjax('article', null, null, table, '#returnAjax', true, 'Recherche en cours')"
+                    class="btn btn-blugre btn-lg btn-block trackValue" name="modeSelect" value="1">
+                <i class="fa fa-calendar" aria-hidden="true"></i> Affichage calendrier
+            </button>
+            <?php
+            }
+        }
+        ?>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <button onclick="sendToAjax('article', 'consulterTousArticles', null, null, '#returnAjax', true, 'Chargement des articles en cours')"
+                class="btn btn-blugre btn-lg btn-block trackValue" name="modeSelect" value="0">
+            <i class="fa fa-search" aria-hidden="true"></i> Retour page de veille
+        </button>
+    </div>
+</div>
+<hr>
+<div class="dropdown">
+    <div class="btn btn-blugre dropdown-toggle" id="searchToolsMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-search"></i> Rechercher
+    </div>
+    <div class="dropdown-menu" aria-labelledby="searchToolsMenu">
+        <form class="px-4 py-3">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <label for="anneeSelect">Choisir une année :</label>
+                <?php echo(Utilities::displayList($tbAnnee, 'form-control trackValue', 'anneeSelect', 1, $annee, null)); ?>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <label for="moisSelect">Choisir un mois :</label>
+                <?php echo(Utilities::displayList(Utilities::genereTbMois(0,12,1,1), 'form-control trackValue', "moisSelect", 1,  $mois, null)); ?>
+            </div>
+            <input type="button" style="margin: calc(14px * 1.42857 + 5px) 0 0;" class="btn btn-blugre form-control" value="Valider" name="valid" onclick="
+                    var input = extractValueOf(document.getElementsByClassName('trackValue'));
+                    var table = {'mode': input['modeSelect'], 'mois': input['moisSelect'], 'annee': input['anneeSelect']};
+                    // On redirige l'utilisateur vers l'affichage du calendrier correspondat au mois de l'année de l'article venant d'être renseigné
+                    sendToAjax('article', null, null, table, '#returnAjax', true, 'Construction du calendrier en cours');">
+        </form>
+    </div>
+</div>
+<input id="mois" type="hidden" value="<?=$mois?>">
+<input id="annee" type="hidden" value="<?=$annee?>">
+
+<?php
+if(isset($_SESSION['connected_user']) && Application\Workbench::isAllowed($_SESSION['connected_user'],USER_STATUS_WRITER)){
+?>
+<fieldset>
+    <div class='col-lg-12'>
+        <h4>
+            <a onclick="sendToAjax('article', 'ajouterArticle', null, null, '#returnAjax', true, 'Création du formulaire')" class="link-blugre">
+                <i class="fa fa-plus-circle"></i> Ajouter un article
+            </a>
+        </h4>
+    </div>
+</fieldset>
+<?php
+}
+?>
+
+<fieldset>
+    <h1>
+    <?php if($nbArticles)
+    {
+    ?>
+        <strong><?=($strNbArticles)?></strong>
+    <?php
+        echo($chaineArticle);
+    }
+    else
+    { ?>
+        <i class="fa fa-meh-o" aria-hidden="true"></i>&nbsp;&nbsp;Pas d'article pour <?=$mois?> <?=$annee?>
+    <?php
+    } ?>
+    </h1>
+    <h3 style="float: left;">
+        <a onclick="var table = {'mode': '0', 'mois': '<?=$moisPrecedent?>', 'annee': '<?=$anneePrecedente?>'};
+        // On redirige l'utilisateur vers l'affichage du calendrier correspondat au mois de l'année de l'article venant d'être renseigné
+        sendToAjax('article', null, null, table, '#returnAjax', true, 'Construction du calendrier en cours');">
+            <i class="fa fa-caret-left" aria-hidden="true"></i> Mois précédent
+        </a>
+    </h3>
+    <h3 style="float: right;">
+        <a onclick="var table = {'mode': '0', 'mois': '<?=$moisSuivant?>', 'annee': '<?=$anneeSuivante?>'};
+        // On redirige l'utilisateur vers l'affichage du calendrier correspondat au mois de l'année de l'article venant d'être renseigné
+        sendToAjax('article', null, null, table, '#returnAjax', true, 'Construction du calendrier en cours');">
+            Mois suivant <i class="fa fa-caret-right" aria-hidden="true"></i>
+        </a>
+    </h3>
+    <div id="displayArticle" class="row">
+        <?php
+        if(!empty($mode) && $mode = 1){
+            foreach($tbArticle as $article){
+                echo(Render::affichArticle($article));
+            }
+        }else{
+            echo(Render::displayCalendar($mois,$annee,$tbArticle));
+        } ?>
+    </div>
+</fieldset>

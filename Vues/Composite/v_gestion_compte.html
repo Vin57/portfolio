@@ -1,0 +1,37 @@
+<!--/*
+ * portfolio - portfolio
+ * © vincp, 2017
+ * v_gestion_compte | v_gestion_compte.html -
+ *
+ * 	@author :
+ * 	@date : 27 avr. 2017
+ *      @modify : 'in case of modification edit this and add an other modify section like this'
+ */-->
+
+<div class="panel-group">
+    <div class="panel">
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-heading panel-blugre">
+                Gérer mon compte
+            </li>
+            <li class="list-group-item">
+                <a class="link-blugre" onclick="sendToAjax('authentification', 'deconnexion', null, null, '#returnAjax', true, 'Déconnexion en cours');">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-square fa-stack-2x"></i>
+                        <i class="fa fa-sign-out fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="lead">Déconnexion</span>
+                </a>
+            </li>
+            <li class="list-group-item">
+                <a class="link-blugre" onclick="sendToAjax('membre', 'modifierProfil', 'affichage', null, '#returnAjax', true, 'Accés à l\'édition');">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-square fa-stack-2x"></i>
+                        <i class="fa fa-edit fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <span class="lead">Modifier profil</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

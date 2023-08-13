@@ -1,0 +1,35 @@
+<!--/*
+ * portfolio - portfolio
+ * © vincp, 2017
+ * v_description | v_description.html -
+ *
+ * 	@author :
+ * 	@date : 18 avr. 2017
+ *      @modify : 'in case of modification edit this and add an other modify section like this'
+ */-->
+<textarea class="form-control" name="description" id="description" rows="10" cols="80" required="required">
+    <?php
+        if(isset($selectDescription) && !empty(trim($selectDescription))){
+            echo(trim($selectDescription));}
+        else{
+            echo('Saisissez un texte ici');} 
+    ?>
+</textarea>
+<div id="content_ck_editor" name="content_ck_editor" class="form-control" style="display:none">
+    <?php
+        if(isset($selectDescription) && !empty(trim($selectDescription))){
+            echo(trim($selectDescription));}
+    ?>
+</div>
+
+<script>
+    editor=CKEDITOR.replace('description',{
+                                 uiColor : '#f2fffe'                       
+                                 });
+    // On récupére l'instance de l'éditeur et on récupére une copie du contenue
+    CKEDITOR.instances['description'].on('contentDom', function() {
+    this.document.on('keyup', function(event){
+         document.getElementById('content_ck_editor').innerHTML = editor.getData();
+     });
+});
+</script>

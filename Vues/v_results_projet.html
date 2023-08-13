@@ -1,0 +1,15 @@
+<!--/*
+ * portfolio - portfolio
+ * © vincp, 2017
+ * v_results_projet | v_results_projet.html - Affichage des résultats d'une recherche de projet
+ *
+ * 	@author : vincp
+ * 	@date : 28 avr. 2017
+ *      @modify : 'in case of modification edit this and add an other modify section like this'
+ */-->
+<span class="lead"><?php echo($nbResultat)?> Résultats trouvé</span>
+<hr>
+<?php
+foreach ($lesResultats as $result) {
+echo(Render::affichProject($result));
+}?>

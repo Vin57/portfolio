@@ -1,0 +1,45 @@
+<!--/*
+ * portfolio - portfolio
+ * © vincp, 2017
+ * v_connexion | v_connexion.html - Formulaire de connexion d'un utilisateur
+ *
+ * 	@author : vincp
+ * 	@date : 4 déc 2016
+ *      @modify : 'in case of modification edit this and add an other modify section like this'
+ */-->
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Identification utilisateur</h3>
+            </div>
+            <div class="panel-body">
+                <form role="form" method="post" action="index.php?uc=connexion&action=valideConnexion">
+                    <fieldset>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input class="form-control" placeholder="Pseudo" name="pseudo" type="text" maxlength="45">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input class="form-control" placeholder="Mot de passe" name="mdp" type="password" maxlength="45">
+                            </div>
+                        </div>
+                        <input type="button" class="btn btn-lg btn-success btn-block" onclick="
+                                var input = extractValueOf(document.getElementsByClassName('form-control'));
+                                var table = {'pseudo': input['pseudo'], 'mdp': input['mdp']};
+                                sendToAjax('authentification', 'connexion', 'validConnexion', table, '#returnAjax', true, 'Vérifications des données en cours');"
+                               value="Se connecter">
+                        <a onclick="sendToAjax('authentification', 'inscription', null, null, '#returnAjax', true, 'Connexion en cours');">
+                            <i class="fa fa-user-plus"></i> Inscription
+                        </a>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

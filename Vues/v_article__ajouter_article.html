@@ -1,0 +1,69 @@
+<!--
+
+ * portfolio - portfolio
+ * © Vincent, 2017
+ * _v_ajouterArticle | HTML - Formulaire d'ajout d'un article
+ *
+ *  @author :
+ *  @date : 3 janv. 2017
+ *      @modify : 'in case of modification edit this and add an other modify section like this'
+-->
+<div class="col-lg-12">
+    <div class="panel panel-blugre">
+        <div class="panel-heading">
+            <div class="panel-title">Ajouter un article</div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!--Date de l'article-->
+                    <div class="col-lg-6 col-md-6 col-sm-7 col-xs-7">
+                        <label for="date_creation">Date </label>
+                        <input class="form-control" type="date" id="date_creation" name="date_creation" value="<?php echo($selectDate)?>" required="required">
+                    </div>
+                </div>
+                <!--Début des informations concernant l'article en lui même-->
+                <div class="col-lg-12">
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                        <!--Le titre-->
+                        <label for="titre">Titre</label>
+                        <input class="form-control" placeholder="Obligatoire" type="text" id="titre" size="100"  maxlength="255" name="txt_titre" value="<?php echo($selectTitre)?>" required="required">
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <!--Le texte-->
+                        <label for="texte">Texte</label>
+                        <?php include('../Vues/Composite/v_description.html') ?>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                        <!--Le niveaux d'interet-->
+                        <label for="bt_interet">Intérêt</label><br>
+                        <button class="btn btn-smoke-red form-control" type="button" onclick="attribValue(<?php echo(STANDARD) ?>, 'bt_interet');setEvidence(this, 'groupeButtonInteret')">Standard</button><br></br>
+                        <button class="btn btn-smoke-red form-control" type="button" onclick="attribValue(<?php echo(NEWS)?>, 'bt_interet');setEvidence(this, 'groupeButtonInteret')">News</button><br></br>
+                        <button class="btn btn-smoke-red form-control" type="button" onclick="attribValue(<?php echo(IMPORTANT)?>, 'bt_interet');setEvidence(this, 'groupeButtonInteret')">Important</button>
+                        <input class="form-control" type="hidden" id="bt_interet" name="interet" value="<?php echo($selectInteret)?>">
+                    </div>
+                    <div class="col-lg-6">
+                        <?php include('../Vues/Composite/v_tag.html') ?>
+                    </div>
+                </div>
+                <div class="uk-alert-large">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <!--Le lien-->
+                        <label for="txt_lien">Lien</label>
+                        <input class="form-control" type="text" id="txt_lien" size="255" name="txt_lien" placeholder="Optionel" value="<?php echo($selectLien)?>" required="required">
+                    </div>
+                </div>
+                <div class="uk-alert-large">
+                    <input type="button" class="btn btn-smoke-red md-btn-block md-btn-large" onclick="
+                                                var input = extractValueOf(document.getElementsByClassName('form-control'));
+                                        var arrayTag = getValueOfElement(document.getElementById('returnTag'), 'id');
+                                        var table = {'txt_titre': input['txt_titre'], 'txt_texte': document.getElementById('content_ck_editor').innerHTML, 'date_creation': input['date_creation'], 'heure_debut': input['heure_debut'], 'interet': input['interet'], 'lien': input['txt_lien'], 'tags': arrayTag};
+                    sendToAjax('article', 'ajouterArticle', 'insererArticle', table, '#returnAjax',true,'Ajout de l\'article en cours');"
+                           name="cmd_form_add" value="Ajouter">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

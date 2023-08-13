@@ -1,0 +1,72 @@
+<!--/*
+ * portfolio - portfolio
+ * © vincp, 2017
+ * v_header | v_header.html - L'entête de la page
+ *
+ * 	@author : vincp
+ * 	@date : 27 avr. 2017
+ *      @modify : 'in case of modification edit this and add an other modify section like this'
+ */-->
+
+<div class="page-header">
+    <nav class="navbar navbar-blugre navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button id="reduce-navbar" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                    <span id="reduce-navbar" class="sr-only">Toggle navigation</span>
+                    <span id="reduce-navbar" class="icon-bar"></span>
+                    <span id="reduce-navbar" class="icon-bar"></span>
+                    <span id="reduce-navbar" class="icon-bar"></span>
+                </button>
+                <ul class="navbar-brand">                            
+                    <a onclick="sendToAjax('accueil', null, null, null, '#returnAjax', true, 'Chargement du profil en cours');/*addClass('accueil', 'active');*/">Vincent PHILIPPE</a>
+                </ul>
+            </div>
+            <div id="navbar" class="navbar-collapse navbar-right collapse" aria-expanded="true">
+                <?php 
+                if(isset($_SESSION['connected_user']) && !empty($_SESSION['connected_user'])){?>
+                <ul class="nav navbar-nav">
+                    <li id="membre">
+                        <input type="hidden" id="id_user" value="<?php echo($_SESSION['connected_user']->getId()) ?>">
+                        <a onclick="
+                                var table = {'id_membre': document.getElementById('id_user').value};
+                                sendToAjax('membre', null, null, table, '#returnAjax', true, 'Chargement de l\'espace membre en cours');
+                                addClass('membre', 'active');">
+                            <i class="fa fa-id-card" aria-hidden="true"></i>
+                            Mon profil
+                        </a>
+                    </li>
+                </ul>
+                <?php }else{ ?>
+                <ul class="nav navbar-nav">
+                    <li id="authentification">
+                        <a onclick="sendToAjax('authentification', null, null, null, '#returnAjax', true, 'Chargement de l\'espace membre en cours');
+                                addClass('authentification', 'active');">
+                            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                            Connexion
+                        </a>
+                    </li>
+                </ul>
+                <?php } ?>
+                <ul class="nav navbar-nav">
+                    <li id="portefeuille">
+                        <a onclick="sendToAjax('portefeuille', null, null, null, '#returnAjax', true, 'Chargement du portefeuille en cours');
+                                addClass('portefeuille', 'active');">
+                            <i class="fa fa-briefcase"></i>
+                            Mes projets
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li id="article">
+                        <a onclick="sendToAjax('article', 'consulterTousArticles', null, null, '#returnAjax', true, 'Chargement des articles en cours');
+                                addClass('article', 'active');">
+                            <i class="fa fa-newspaper-o"></i>
+                            Veille
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

@@ -1,0 +1,129 @@
+<!--/*
+ * portfolio - portfolio
+ * © vincp, 2017
+ * v_article__lister_tous_articles | v_article__lister_tous_articles.html - Affiche tous les articles disponibles sur le site
+ *
+ * 	@author :
+ * 	@date : 5 mai 2017
+ *      @modify : 'in case of modification edit this and add an other modify section like this'
+ */-->
+
+
+<div class="content-mobile">
+    <h1 class="text-nowrap">Articles de veille</h1>
+    <div>
+        <i class="fa fa-search"></i> Rechercher par
+        <label for="txt_titre">Titre</label><br>
+        <input class="form-control" id="txt_titre" placeholder="Rechercher un titre" type="text" 
+        onKeyUp="var dataTitre = {'titre': $(this).val(),'mode':'titre'};
+        sendToAjax('article', 'rechercherArticle', null, dataTitre, '#resultSearch', true, 'Recherche en cours')">
+        <i class="fa fa-search"></i> Rechercher par
+        <label for="txt_tags">Tags</label><br>
+        <input class="form-control" id="txt_tags" placeholder="Rechercher un tag" type="text" 
+               onKeyUp="var tableau = {'objet': this.value};
+                   sendToAjax('tag', 'chercherTag', null, tableau, '#researchTag', false, 'Recherche de tags')">
+        <div id="researchTag"></div>
+        <div id="returnTag">
+            <br>
+            <?php if(isset($selectTags)){echo($selectTags);} ?>
+        </div>
+        <button onclick="var arrayTag = getValueOfElement(document.getElementById('returnTag'), 'id');
+        var dataTag = {'tags': arrayTag,'mode':'tag'};
+        sendToAjax('article', 'rechercherArticle', null, dataTag, '#resultSearch', true, 'Recherche en cours')"
+        class="btn btn-blugre trackValue"><i class="glyphicon glyphicon-search"></i> Appliquer les tags</button>
+    </div>
+</div>
+
+<div class="content-desktop">
+    <div class="row">
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="text-nowrap">Articles de veille</h1>
+            </div>
+        </div>
+    </div>
+    <div class="dropdown">
+    <div class="btn btn-blugre dropdown-toggle" id="searchToolsMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-search"></i> Rechercher
+    </div>
+    <div class="dropdown-menu" aria-labelledby="searchToolsMenu">
+        <form class="px-4 py-3">
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <label for="txt_titre">Titre</label><br>
+                <input class="form-control" id="txt_titre" placeholder="Chercher par titre" type="text" 
+                       onKeyUp="var dataTitre = {'titre': $(this).val(), 'mode': 'titre'};
+                               sendToAjax('article', 'rechercherArticle', null, dataTitre, '#resultSearch', true, 'Recherche en cours')">
+                <hr>
+            </div>
+            <div class="dropdown-item col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <?php include('../Vues/Composite/v_tag.html');?>
+                <div id="btnAppliquerTags" style="display:none">
+                    <input id='applyTagText' type="button" onclick="
+                            var arrayTag = getValueOfElement(document.getElementById('returnTag'), 'id');
+                            var dataTag = {'tags': arrayTag, 'mode': 'tag'};
+                            sendToAjax('article', 'rechercherArticle', null, dataTag, '#resultSearch', true, 'Recherche en cours')
+                            " class="btn btn-blugre btn-lg btn-block trackValue" value="Appliquer les tags">
+                </div>
+            </div>
+        </form>
+        
+        <div class="dropdown-item col-lg-12">
+            <a onclick="sendToAjax('article', null, null, null, '#returnAjax', true, 'Recherche en cours')">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                <u>Rechercher par dates</u>
+            </a>
+        </div>
+    </div>
+</div>
+</div>
+<div id="resultSearch">
+
+</div>
+<div class="col-lg-12" id="resultSearch">
+    <h1><?=$totalArticle?> Articles à découvrir...</h1>
+    <div id="affichArticle">
+        <?php echo($renderingArticle) ?>
+    </div>
+    <?php echo($pagination); ?>
+</div>
+
+<script>
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    $(".content-desktop").empty();
+}else{
+    $(".content-mobile").empty();
+}
+</script>
+
+<script>
+    // Déclaration des variables
+    var resultSearch = document.querySelector("#returnTag");
+    var observerOptions = {
+        childList: true,
+        attributes: true,
+        subtree: true //Observe seulement les modifications du noeud parent
+    }
+
+    // Fonction faisant apparaître ou disparaitre le bouton d'application des badges à la recherche d'articles.
+    function tagEventHandler() {
+
+        var nbrBadgeSelected = $('.searchedBadge').length;
+        // Si on à sélectionné au moins un badge, on peux alors l'appliquer à la recherche.
+        if (nbrBadgeSelected > 0) {
+            $('#btnAppliquerTags').css("display", "block");
+            if (nbrBadgeSelected > 1) {
+                $('#applyTagText').text('Appliquer les tags');
+            }
+            else{
+                $('#applyTagText').text('Appliquer le tag');
+            }
+        } else {
+            $('#btnAppliquerTags').css("display", "none");
+        }
+    }
+
+    // Appel de l'observer de mutation du DOM
+    var observer = new MutationObserver(tagEventHandler);
+    observer.observe(resultSearch, observerOptions);
+
+</script>

@@ -1,0 +1,26 @@
+<!--/*
+ * portfolio - portfolio
+ * © vincp, 2017
+ * v_projet__lister_projets | v_projet__lister_projets.html - Formulaire de liste des projets
+ *
+ * 	@author : vincp
+ * 	@date : 30 avr. 2017
+ *      @modify : 'in case of modification edit this and add an other modify section like this'
+ */-->
+
+<div class="col-lg-10 sol-md-9 col-sm-8 col-xs-12">
+    <div id="returnProjet">
+        <?php 
+        if($renderingProjets){
+        echo($renderingProjets);
+        }else{ ?>
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="text-nowrap"><i class="fa fa-frown-o" aria-hidden="true"></i> Aucun projet pour le moment</h1>
+            </div>
+        </div>
+        <?php } 
+        echo($pagination); ?>
+    </div>
+
+</div>
